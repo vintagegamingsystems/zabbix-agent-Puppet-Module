@@ -3,3 +3,5 @@
 # Run this in the command line. That way the symbolic link will point to the memory file in authConf.
 
 # ln -s ../authConf/memory .
+
+# Don't use this file, delete it and make a symbolic link.
