@@ -1,7 +1,7 @@
 zabbix-agent-Puppet-Module
 ==========================
 #
-# The the Readme is still a work in progress. 
+# The the README file is still a work in progress. 
 #
 # authConf Directory
 #
@@ -9,11 +9,16 @@ zabbix-agent-Puppet-Module
 #
 # This directory is used to keep all of the authoratative configuration files.
 # Read carefully.
-# In the parent directory that houses the authConf directory, make a directory that is the name of the hostname of the
-# client machines that you would like to push configuration files to.
+# In the parent directory that houses the authConf directory, make a directory that is the name of the hostname, pulled 
+# from factor, of the client machines that you would like to push configuration files to.
 #
-# You will see an example directory named is-joshdev1. Within that directory you will want to place symlinks that point
-# to files within the authConf directory. 
+# If you are unsure of what your hostname is in facter, use the command below.
+#
+# facter -p | grep hostname
+#
+# You will see an example directory named is-joshdev1. That name is the hostname. Within that directory you will want 
+# to place symlinks that point to files within the authConf directory. 
+#
 # Make sure you place your authoratative configuration files within the authConf directory only. That way there will not 
 # be duplicate configuration files on your puppet master.
 #
