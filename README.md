@@ -17,3 +17,6 @@ zabbix-agent-Puppet-Module
 #
 # This directory will allow you to configure your puppet agents with any type of custom configuration that you want.
 # The granularity is nearly infinite.
+#
+# If configured correctly, you should be able to eliminate the need for the /etc/zabbix/zabbix_agentd.conf file
+# altogether.
