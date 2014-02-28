@@ -1,5 +1,7 @@
-# CPU UserParameters
-# Associated with the Josh Template CPU Custom and Josh Template CPU Custom Active
+# This file should be a symbolic link that points to the ../authConf/cpu file
 
-UserParameter=system.cpu.speed, cat /proc/cpuinfo | grep "^cpu MHz" | awk NR==1'{print $4}'
+# Run this in the command line. That way the symbolic link will point to the cpu file in authConf.
 
+# ln -s ../authConf/cpu .
+
+# Don't use this file, delete it and make a symbolic link.
