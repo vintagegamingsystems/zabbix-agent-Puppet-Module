@@ -5,8 +5,17 @@
 # default.conf
 # serverAgentLoopback.conf
 # activeServerAgentLoopback.conf
+# userparameter_mysql.conf
 # 
 # The default.conf will configure the default zabbix_agentd.conf configuration MINUS the folloiwng parameters:
 #           - Server=
 #           - ActiveServer=
 #           - Include=
+#
+# The serverAgentLoopback.conf will configure the Server=127.0.0.1 parameter.
+#
+# The activeServerAgentLoopback.conf will configure the ActiveServer=127.0.0.1 parameter.
+#
+# The userparameter_mysql.conf will configure the zabbix agent to send metrics from the zabbix agent to the front end. 
+#
+# Do not duplicate configuration parameters, otherwise the zabbix-agent will crash upon service restart.
