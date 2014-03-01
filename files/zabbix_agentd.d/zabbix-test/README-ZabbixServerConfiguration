@@ -1,0 +1,12 @@
+# README - Default Configuration for Zabbix agent on Zabbix Server 
+# Place symbolic links to the following files in /etc/puppet/modules/zabbixagent/files/zabbix_agentd.d/authConf directory
+# for the zabbix server:
+#
+# default.conf
+# serverAgentLoopback.conf
+# activeServerAgentLoopback.conf
+# 
+# The default.conf will configure the default zabbix_agentd.conf configuration MINUS the folloiwng parameters:
+#           - Server=
+#           - ActiveServer=
+#           - Include=
