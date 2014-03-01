@@ -1,5 +1,0 @@
-# CPU UserParameters
-# Associated with the Josh Template CPU Custom and Josh Template CPU Custom Active
-
-UserParameter=system.cpu.speed, cat /proc/cpuinfo | grep "^cpu MHz" | awk NR==1'{print $4}'
-
