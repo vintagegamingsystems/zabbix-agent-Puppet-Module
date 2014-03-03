@@ -75,4 +75,5 @@ Server=< Your zabbix server IP address and/or DNS name >
 Now create a symbolic link within the /etc/puppet/modules/zabbixagent/zabbix_agentd.d/<hostname> directory.
 
 ♯ ln -s /etc/puppet/modules/zabbix_agent/zabbixd.d/authConf /etc/puppet/modules/zabbixagent/zabbix_agentd.d/<hostname>
-The puppet module will follow the symlink and add the files that it finds the files that are linked in the authConf directory.
+The puppet module will follow the symlink and add the files that it finds the files that are linked in the authConf 
+directory.
