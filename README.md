@@ -45,6 +45,7 @@ The basic rule of thumb is that if you decide to make a custom configuration fil
 
 Example of Custom Configuration
 Lets say you wanted to make a custom configuration that sets the Server= parameter for the zabbix agent, because you have multiple zabbix servers and you want to point this agent to a particular one. First, create a file named serverAgent.conf within the /etc/puppet/modules/zabbix_agent/zabbix_agentd.d/authConf directory.
+
 ♯ Option: Server
 ♯	List of comma delimited IP addresses (or hostnames) of Zabbix servers.
 ♯	Incoming connections will be accepted only from the hosts listed here.
