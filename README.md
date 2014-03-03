@@ -45,16 +45,18 @@ The basic rule of thumb is that if you decide to make a custom configuration fil
 
 Example of Custom Configuration
 Lets say you wanted to make a custom configuration that sets the Server= parameter for the zabbix agent, because you have multiple zabbix servers and you want to point this agent to a particular one. First, create a file named serverAgent.conf within the /etc/puppet/modules/zabbix_agent/zabbix_agentd.d/authConf directory.
-	### Option: Server
-	#	List of comma delimited IP addresses (or hostnames) of Zabbix servers.
-	#	Incoming connections will be accepted only from the hosts listed here.
-	#	No spaces allowed.
-	#	If IPv6 support is enabled then '127.0.0.1', '::127.0.0.1', '::ffff:127.0.0.1' are treated 	# 	equally.
-	#
-	# Mandatory: no
-	# Default:
-	# Server=
-	Server=< Your zabbix server IP address and/or DNS name >
+### Option: Server
+#	List of comma delimited IP addresses (or hostnames) of Zabbix servers.
+#	Incoming connections will be accepted only from the hosts listed here.
+#	No spaces allowed.
+#	If IPv6 support is enabled then '127.0.0.1', '::127.0.0.1', '::ffff:127.0.0.1' are treated 	
+# 	equally.
+#
+# Mandatory: no
+# Default:
+# Server=
+Server=< Your zabbix server IP address and/or DNS name >
+
 Now create a symbolic link within the /etc/puppet/modules/zabbixagent/zabbix_agentd.d/<hostname> directory. 
 # ln -s /etc/puppet/modules/zabbix_agent/zabbixd.d/authConf /etc/puppet/modules/zabbixagent/zabbix_agentd.d/<hostname>
 The puppet module will follow the symlink and add the files that it finds the files that are linked in the authConf directory.
