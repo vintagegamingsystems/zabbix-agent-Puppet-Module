@@ -1,1 +1,60 @@
-zabbix-agent-Puppet-Modules
+Zabbix-agent-Puppet-Module
+
+This module will install the zabbix agent onto client machines. 
+Once you have pointed the module at the machine that you want the agent on, you can configure the agent by creating files on the puppetmaster in directory below.
+
+location: /etc/puppet/modules/zabbixagent/files/zabbix_agentd.d/autoConf
+
+This above directory is used to keep all of the authoritative configuration files. In the parent directory that houses the authConf directory, make a directory that is the name of the hostname, pulled from factor, of the client machines that you would like to push configuration files to.
+
+If you are unsure of what your hostname is in facter, use the command below.
+facter -p | grep hostname
+
+You will see an example directory named is-joshdev1. That name is the hostname. Within that directory you will want to place symbolic links that point to files within the authConf directory.
+
+Example hostname directory:
+/etc/puppet/modules/zabbixagent/files/zabbix_agentd.d/is-joshdev1
+
+Make sure you place your authoritative configuration files within the authConf directory only. That way there will not be duplicate configuration files on your puppet master.
+
+Explanation of configuration files within authConf directory.
+
+default.conf
+The default zabbbix_agentd.conf file with the following parameters REMOVED from it:
+      Server=
+      ServerActive=
+      Include=
+They are removed so that we can define them on a per-host basis.
+
+activeServerAgentLoopback.conf
+File to define the Zabbix active server. This parameter is usually pointed at the loopback. 
+      ServerActive=127.0.0.1
+
+serverAgent.conf
+Parameter to define the destination address of the Zabbix server.
+      Server=<ip and/or DNS name of zabbix server>
+If you are using both the ip address and DNS name it is required that you separate them 			with a comma. i.e. Server=10.0.0.1, zabbix-server
+
+serverAgentLoopback.conf
+Place to define the Zabbix Server's agent Server= parameter. The agent on the Zabbix Server always points to it's local loopback. 
+      Server=127.0.0.1
+If you are using both the ip address and the DNS name, is is required that you separate 			them with a comma. i.e. Server=127.0.0.1, localhost
+
+Note: Any duplicate entries within the Zabbix configuration will cause the agent to crash upon restart. 
+The basic rule of thumb is that if you decide to make a custom configuration file that has a parameter that is within the default.conf file make sure that 
+
+Example of Custom Configuration
+Lets say you wanted to make a custom configuration that sets the Server= parameter for the zabbix agent, because you have multiple zabbix servers and you want to point this agent to a particular one. First, create a file named serverAgent.conf within the /etc/puppet/modules/zabbix_agent/zabbix_agentd.d/authConf directory.
+	### Option: Server
+	#	List of comma delimited IP addresses (or hostnames) of Zabbix servers.
+	#	Incoming connections will be accepted only from the hosts listed here.
+	#	No spaces allowed.
+	#	If IPv6 support is enabled then '127.0.0.1', '::127.0.0.1', '::ffff:127.0.0.1' are treated 	# 	equally.
+	#
+	# Mandatory: no
+	# Default:
+	# Server=
+	Server=< Your zabbix server IP address and/or DNS name >
+Now create a symbolic link within the /etc/puppet/modules/zabbixagent/zabbix_agentd.d/<hostname> directory. 
+# ln -s /etc/puppet/modules/zabbix_agent/zabbixd.d/authConf /etc/puppet/modules/zabbixagent/zabbix_agentd.d/<hostname>
+The puppet module will follow the symlink and add the files that it finds the files that are linked in the authConf directory.
