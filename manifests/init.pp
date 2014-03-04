@@ -1,5 +1,3 @@
-$zabbix_user_parameters = []
-
     define confDir($ensure) {
         case $ensure {
             absent: {
@@ -20,22 +18,11 @@ $zabbix_user_parameters = []
 
 
 class zabbixagent {
-	# Our zabbix server has the ip of 128.223.214.111 just in case.
     	$zabbixRPMPubkey = "/etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX"
-	$zabbix_config_dir = "/etc/zabbix" # True in our environment
-	$zabbix_agentd_conf = "$zabbix_config_dir/zabbix_agentd.conf" # True in our environment
-    	$zabbix_log_dir = "/var/log/zabbix/" # <- Location in our environment
-    	$zabbix_pid_dir = "/var/run/zabbix/" #<- Location in our environment
- 
-#Conditional statement to designate the $zabbix_server variable 
-	
-	if $hostname == "zabbix-test" {
-		$zabbix_server = "127.0.0.1"
-	}
-	else {
-		$zabbix_server = "128.223.142.111"
-	}
-	
+	$zabbix_config_dir = "/etc/zabbix"
+	$zabbix_agentd_conf = "$zabbix_config_dir/zabbix_agentd.conf"
+    	$zabbix_log_dir = "/var/log/zabbix/"
+    	$zabbix_pid_dir = "/var/run/zabbix/"
 
    # Retrieves and imports Zabbix Public key
    exec { 
